@@ -2,19 +2,19 @@
 
 <img width="3840" height="2080" alt="image" src="https://github.com/user-attachments/assets/2a315c49-507e-4ada-9b47-2ba75b973a6a" />
 
-- Ò»¸ö Windows Æ½Ì¨µÄ`Í¼Æ¬Éú³ÉÆ÷`£¬Ä¿±ê¿ò¼Ü `net45`£¬ÓïÑÔ°æ±¾ `C# 7.3`
-- Ö§³Ö·¢²¼Îª¡°µ¥Æ¬ exe¡±£¨Í¨¹ı `Costura.Fody` ½«ÍĞ¹ÜÒÀÀµÇ¶Èë¿ÉÖ´ĞĞÎÄ¼ş£©
-- GitHub Actions »ùÓÚ±êÇ©×Ô¶¯¹¹½¨¡¢´ò°ü²¢·¢²¼ Release
+- ä¸€ä¸ª Windows å¹³å°çš„`å›¾ç‰‡ç”Ÿæˆå™¨`ï¼Œç›®æ ‡æ¡†æ¶ `net45`ï¼Œè¯­è¨€ç‰ˆæœ¬ `C# 7.3`
+- æ”¯æŒå‘å¸ƒä¸ºâ€œå•ç‰‡ exeâ€ï¼ˆé€šè¿‡ `Costura.Fody` å°†æ‰˜ç®¡ä¾èµ–åµŒå…¥å¯æ‰§è¡Œæ–‡ä»¶ï¼‰
+- GitHub Actions åŸºäºæ ‡ç­¾è‡ªåŠ¨æ„å»ºã€æ‰“åŒ…å¹¶å‘å¸ƒ Release
 
-## ÏÂÔØ
-- Ç°Íù Releases Ò³ÃæÏÂÔØ×îĞÂ°æ±¾£º
+## ä¸‹è½½
+- å‰å¾€ Releases é¡µé¢ä¸‹è½½æœ€æ–°ç‰ˆæœ¬ï¼š
   - https://github.com/Chendaqian/ImageGenerator/releases
-- ×Ê²úËµÃ÷£º
-  - `ImageGenerator-<tag>.zip`£º½ö°üº¬µ¥Æ¬ `ImageGenerator.exe`
-  - ĞèÒªÔÚÄ¿±ê»úÆ÷°²×° `.NET Framework 4.5`
+- èµ„äº§è¯´æ˜ï¼š
+  - `ImageGenerator-<tag>.zip`ï¼šä»…åŒ…å«å•ç‰‡ `ImageGenerator.exe`
+  - éœ€è¦åœ¨ç›®æ ‡æœºå™¨å®‰è£… `.NET Framework 4.5`
 
-## ¿ìËÙÔËĞĞ
-- ½âÑ¹ºó£¬Ö±½ÓË«»÷ `ImageGenerator.exe`
+## å¿«é€Ÿè¿è¡Œ
+- è§£å‹åï¼Œç›´æ¥åŒå‡» `ImageGenerator.exe`
 
-## ÏµÍ³ÒªÇó
-- .NET Framework£º4.5£¨±ØĞë£©
+## ç³»ç»Ÿè¦æ±‚
+- .NET Frameworkï¼š4.5ï¼ˆå¿…é¡»ï¼‰
