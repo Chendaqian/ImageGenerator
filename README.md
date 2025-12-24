@@ -1,6 +1,6 @@
 # LoveForm
 
-<img width="3840" height="2080" alt="image" src="https://github.com/user-attachments/assets/2a315c49-507e-4ada-9b47-2ba75b973a6a" />
+<img width="748" height="750" alt="image" src="https://github.com/user-attachments/assets/6009f541-1712-48cd-ba18-d1bf2d69838f" />
 
 - 一个 Windows 平台的`图片生成器`，目标框架 `net45`，语言版本 `C# 7.3`
 - 支持发布为“单片 exe”（通过 `Costura.Fody` 将托管依赖嵌入可执行文件）
