@@ -19,21 +19,21 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      # ĞŞ¸´1£ºÖ±½ÓÊ¹ÓÃ¸ùÄ¿Â¼µÄÏîÄ¿ÎÄ¼ş
+      # ä¿®å¤1ï¼šç›´æ¥ä½¿ç”¨æ ¹ç›®å½•çš„é¡¹ç›®æ–‡ä»¶
       - name: build
         shell: pwsh
         run: |
-          dotnet restore ImageGenerator.csproj  # ÒÆ³ı×ÓÄ¿Â¼
-          dotnet build ImageGenerator.csproj -c Release -p:GenerateResourceUsePreserializedResources=true  # ÒÆ³ı×ÓÄ¿Â¼
+          dotnet restore ImageGenerator.csproj  # ç§»é™¤å­ç›®å½•
+          dotnet build ImageGenerator.csproj -c Release -p:GenerateResourceUsePreserializedResources=true  # ç§»é™¤å­ç›®å½•
 
-      # ĞŞ¸´2£ºÑéÖ¤Êä³öÂ·¾¶£¨NET48 Í¨³£ÔÚ bin/Release/£©
+      # ä¿®å¤2ï¼šéªŒè¯è¾“å‡ºè·¯å¾„ï¼ˆNET48 é€šå¸¸åœ¨ bin/Release/ï¼‰
       - name: verify output
         shell: pwsh
         run: |
           $outputPath = "bin\Release\net48\ImageGenerator.exe"
           if (!(Test-Path $outputPath)) {
             Write-Error "Build output not found at $outputPath"
-            Get-ChildItem -Recurse -Force bin\Release  # µ÷ÊÔ£ºÁĞ³öËùÓĞÊä³öÎÄ¼ş
+            Get-ChildItem -Recurse -Force bin\Release  # è°ƒè¯•ï¼šåˆ—å‡ºæ‰€æœ‰è¾“å‡ºæ–‡ä»¶
             exit 1
           }
 
@@ -42,7 +42,7 @@ jobs:
         run: |
           Get-ChildItem -Recurse -Force bin\Release | Select-Object FullName,Length | Format-Table -AutoSize
 
-      # ĞŞ¸´3£ºÑ¹Ëõ¸ùÄ¿Â¼Êä³ö
+      # ä¿®å¤3ï¼šå‹ç¼©æ ¹ç›®å½•è¾“å‡º
       - name: package
         shell: pwsh
         run: |
