@@ -21,37 +21,21 @@ jobs:
       - name: build
         shell: pwsh
         run: |
-          msbuild ImageGenerator.csproj "/t:Restore"
-          $assetsPath = Join-Path (Get-Location) "obj\project.assets.json"
-          if (!(Test-Path $assetsPath)) { throw "project.assets.json not found: $assetsPath" }
-          $assets = Get-Content $assetsPath -Raw | ConvertFrom-Json
-          $nugetRoots = @()
-          foreach ($p in $assets.packageFolders.PSObject.Properties) { if ($p.Name) { $nugetRoots += $p.Name.TrimEnd('\') } }
-          $refRoot = $null
-          foreach ($root in $nugetRoots) {
-            $p1 = Join-Path $root "microsoft.netframework.referenceassemblies"
-            if (Test-Path $p1) { $refRoot = $p1; break }
-            $p2 = Join-Path $root "microsoft.netframework.referenceassemblies.net45"
-            if (Test-Path $p2) { $refRoot = $p2; break }
-          }
-          if ($refRoot -eq $null) { throw "Reference assemblies package not found." }
-          $refVersionDir = Get-ChildItem $refRoot -Directory | Sort-Object Name -Descending | Select-Object -First 1
-          $refPath = Get-ChildItem $refVersionDir.FullName -Recurse -Directory | Where-Object { $_.FullName -match "\\.NETFramework\\v4.5$" } | Select-Object -First 1
-          if ($refPath -eq $null) { throw "Reference assemblies path not found." }
-          msbuild ImageGenerator.csproj "/t:Build" "/p:Configuration=Release" "/p:GenerateResourceUsePreserializedResources=true" "/p:FrameworkPathOverride=$($refPath.FullName)"
+          dotnet restore ImageGenerator\ImageGenerator.csproj
+          dotnet build ImageGenerator\ImageGenerator.csproj -c Release -p:GenerateResourceUsePreserializedResources=true
       - name: verify output
         shell: pwsh
         run: |
-          if (!(Test-Path "bin\Release\net45\ImageGenerator.exe")) { Write-Error "Build output not found: ImageGenerator.exe" }
+          if (!(Test-Path "ImageGenerator\bin\Release\net48\ImageGenerator.exe")) { Write-Error "Build output not found: ImageGenerator.exe" }
       - name: list output
         shell: pwsh
         run: |
-          Get-ChildItem -Recurse -Force bin\Release | Select-Object FullName,Length | Format-Table -AutoSize
+          Get-ChildItem -Recurse -Force ImageGenerator\bin\Release | Select-Object FullName,Length | Format-Table -AutoSize
       - name: package
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist
-          Compress-Archive -Path bin\Release\net45\ImageGenerator.exe,bin\Release\net45\ImageGenerator.exe.config -DestinationPath dist\ImageGenerator-${{ github.ref_name }}.zip -Force
+          Compress-Archive -Path ImageGenerator\bin\Release\net48\ImageGenerator.exe -DestinationPath dist\ImageGenerator-${{ github.ref_name }}.zip -Force
       - name: publish
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2

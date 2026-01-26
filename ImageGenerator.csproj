@@ -1,37 +1,49 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net45</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <AssemblyName>ImageGenerator</AssemblyName>
-    <RootNamespace>ImageGenerator</RootNamespace>
-    <LangVersion>7.3</LangVersion>
-    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="Resources\app.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="PowerLib.Winform" Version="1.0.13" />
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
-    <PackageReference Include="Fody" Version="6.8.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Costura.Fody" Version="4.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>ImageGenerator</RootNamespace>
+		<AssemblyName>ImageGenerator</AssemblyName>
+		<StartupObject>ImageGenerator.Program</StartupObject>
+		<ApplicationIcon>Resources\app.ico</ApplicationIcon>
+		<LangVersion>7.3</LangVersion>
+		<Prefer32Bit>false</Prefer32Bit>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove=".github\**" />
+		<EmbeddedResource Remove=".github\**" />
+		<None Remove=".github\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="FodyWeavers.xsd" />
+		<None Include="Resources\app.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="PowerLib.Winform" Version="1.0.13" />
+		<PackageReference Include="System.Resources.Extensions" Version="4.7.1" />
+		<PackageReference Include="Fody" Version="6.8.0" PrivateAssets="all" />
+		<PackageReference Include="Costura.Fody" Version="5.7.0" PrivateAssets="all" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 </Project>
 
