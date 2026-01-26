@@ -21,7 +21,7 @@ jobs:
       - name: build
         shell: pwsh
         run: |
-          msbuild ImageGenerator.csproj /t:Restore;Build /p:Configuration=Release /p:GenerateResourceUsePreserializedResources=true
+          msbuild ImageGenerator.csproj "/t:Restore;Build" "/p:Configuration=Release" "/p:GenerateResourceUsePreserializedResources=true"
       - name: verify output
         shell: pwsh
         run: |
