@@ -18,24 +18,37 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
+
+      # 修复1：直接使用根目录的项目文件
       - name: build
         shell: pwsh
         run: |
-          dotnet restore ImageGenerator\ImageGenerator.csproj
-          dotnet build ImageGenerator\ImageGenerator.csproj -c Release -p:GenerateResourceUsePreserializedResources=true
+          dotnet restore ImageGenerator.csproj  # 移除子目录
+          dotnet build ImageGenerator.csproj -c Release -p:GenerateResourceUsePreserializedResources=true  # 移除子目录
+
+      # 修复2：验证输出路径（NET48 通常在 bin/Release/）
       - name: verify output
         shell: pwsh
         run: |
-          if (!(Test-Path "ImageGenerator\bin\Release\net48\ImageGenerator.exe")) { Write-Error "Build output not found: ImageGenerator.exe" }
+          $outputPath = "bin\Release\net48\ImageGenerator.exe"
+          if (!(Test-Path $outputPath)) {
+            Write-Error "Build output not found at $outputPath"
+            Get-ChildItem -Recurse -Force bin\Release  # 调试：列出所有输出文件
+            exit 1
+          }
+
       - name: list output
         shell: pwsh
         run: |
-          Get-ChildItem -Recurse -Force ImageGenerator\bin\Release | Select-Object FullName,Length | Format-Table -AutoSize
+          Get-ChildItem -Recurse -Force bin\Release | Select-Object FullName,Length | Format-Table -AutoSize
+
+      # 修复3：压缩根目录输出
       - name: package
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist
-          Compress-Archive -Path ImageGenerator\bin\Release\net48\ImageGenerator.exe -DestinationPath dist\ImageGenerator-${{ github.ref_name }}.zip -Force
+          Compress-Archive -Path "bin\Release\net48\ImageGenerator.exe" -DestinationPath "dist\ImageGenerator-${{ github.ref_name }}.zip" -Force
+
       - name: publish
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
