@@ -2,6 +2,10 @@
 
 <img width="748" height="750" alt="image" src="https://github.com/user-attachments/assets/6009f541-1712-48cd-ba18-d1bf2d69838f" />
 
+see https://deepwiki.com/Chendaqian/ImageGenerator
+
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Chendaqian/ImageGenerator)
+
 - 一个 Windows 平台的`图片生成器`，目标框架 `net45`，语言版本 `C# 7.3`
 - 支持发布为“单片 exe”（通过 `Costura.Fody` 将托管依赖嵌入可执行文件）
 - GitHub Actions 基于标签自动构建、打包并发布 Release
